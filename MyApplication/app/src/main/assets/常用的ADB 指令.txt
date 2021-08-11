@@ -1,0 +1,23 @@
+1、adb shell 进入到cache/app目录下　然后ls 查看是否有预装应用
+2、adb reboot bootloader   进入升级界面
+3、adb kill-server  重启adb服务
+4、百富用的是pax_adb  这种方式实现   pax_adb  kill-server
+5、pax_adb logcat >G:\log\logcat.log    把logcat抓取的日志文件保存到PC端指定的文件里面，需要开始创建一个文件；
+6、adb 进入到安卓文件目录里面    adb shell    然后cd
+7、进入到目录后查看目录下面有那些文件的指令 ls -al 查看文件
+8、adb pull 文件到指定的PC端的文件夹里面  adb pull sdcard/DCIM/Camera/ f:\Camera   把Camera文件夹下面的所有文件拷贝到
+PC端的F盘下面的Camera文件夹下面；
+9、查看当前activity界面名称
+adb shell dumpsys window | findstr mCurrentFocus
+
+10、adb shell df
+
+11、adb logcat > d:\\logcat.txt  抓取日志
+外部执行dex包
+12、adb shell dalvikvm -cp /data/local/tmp/dalvik-cache/HelloWorld.dex HelloWorld   外部执行dex包，-cp /data/local/tmp/dalvik-cache/HelloWorld.dex  //dex包的路径   HelloWorld   dex包的名字
+
+
+
+
+
+

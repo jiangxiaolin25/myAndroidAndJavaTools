@@ -1,0 +1,10 @@
+1、app项目工程下添加依赖
+compile 'com.android.support:multidex:1.0.0'
+
+2、安卓下添加这个即可
+Android{
+    defaultConfig{
+   multiDexEnabled true   
+
+}
+}

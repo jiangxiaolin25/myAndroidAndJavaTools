@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity" >
+
+    <!--然后在activity界面首先需要找到每个CheckBox
+    CheckBox  cb_one = (CheckBox) findViewById(R.id.cb_one);
+    然后为每个checkbox注册一个点击监听事件
+    cb_one.setOnCheckedChangeListener(new OnCheckedChangeListener());
+    "-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请选择性别"
+        android:textSize="23dp"
+        />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第一个"
+        android:id="@+id/ck_1"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第二个"
+        android:id="@+id/ck_2"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="第三个"
+        android:id="@+id/ck_3"/>
+
+
+    <Button
+        android:id="@+id/btnpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"/>
+
+    <!--然后在activity界面首先需要找到ToggleButton
+     tbtn_open = (ToggleButton) findViewById(R.id.tbtn_open);
+        swh_status = (Switch) findViewById(R.id.swh_status);
+        tbtn_open.setOnCheckedChangeListener(this);
+        swh_status.setOnCheckedChangeListener(this);
+    "-->
+
+
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="关闭"
+        android:textOn="打开"
+        android:checked="false"
+        android:id="@+id/tog_1"/>
+
+    <Switch
+        android:id="@+id/swh_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="123"
+        android:textOn="456"
+        />
+
+
+
+
+
+</LinearLayout>

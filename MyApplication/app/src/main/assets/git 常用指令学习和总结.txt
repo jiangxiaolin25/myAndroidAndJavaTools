@@ -1,0 +1,55 @@
+1.使用git fetch更新，相当于是从远程获取最新版本到本地，不会自动merge
+git fetch origin master
+2.使用git pull 更新，相当于是从远程获取最新版本并merge到本地
+git pull origin master
+
+3、git给远程的github同步代码的指令
+git init            初始化：就是说在这个文件下新建一个git本地库
+git add README.md
+git commit -m "first commit"
+git branch -M main   新建一个分支  名字叫mian
+git remote add origin git@github.com:jiangxiaolin25/123456.git   第一次提交的时候需要使用
+git push -u origin main    后面提交直接运行这个就可以了   后面不需要添加git地址
+
+
+
+reset(版本撤回)  reset就是直接删除某次提交 reset后，所以这个需要强制 push :git push origin master:master -f 到远程库
+回退所有内容到上一个版本 git reset HEAD^
+回退a.py这个文件的版本到上一个版本 git reset HEAD^ a.py
+向前回退到第3个版本 git reset –soft HEAD~3
+将本地的状态回退到和远程的一样 git reset –hard origin/master
+回退到某个版本 git reset 057d
+回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit git revert HEAD
+流程
+1、git log  查看需要回退的版本
+2、git reset --hard de9cf03fb023a8ae6f294b31ae3f7ebfd6c0e0ad  回退版本
+3、git push origin master:master -f    强制 push到远程仓库
+
+
+
+revert(撤消操作)   撤回某次提交  然后生成一个新的提交，这次提交之前的都回保存   C-B   比如revertC 那么就会撤销C的修改，然后生成一个D，但是会保留B的修改　如下C－B－D
+撤销某次操作，此次操作之前的commit都会被保留. git reset 是撤销某次提交，但是此次之后的修改都会被退回到暂存区.
+git revert HEAD~3：丢弃最近的三个commit，把状态恢复到最近的第四个commit，并且提交一个新的commit来记录这次改变
+
+区别：
+    git revert是用一次新的commit来回滚之前的commit，git reset是直接删除指定的commit。
+    在回滚这一操作上看，效果差不多。但是在日后继续merge以前的老版本时有区别。因为git revert是用一次逆向的commit“中和”之前的提交，因此日后合并老的branch时，导致这部分改变不会再次出现，但是git reset是之间把某些commit在某个branch上删除，因而和老的branch再次merge时，这些被回滚的commit应该还会被引入。
+    git reset 是把HEAD向后移动了一下，而git revert是HEAD继续前进，只是新的commit的内容和要revert的内容正好相反，能够抵消要被revert的内容。
+
+没有push:
+--mixed
+会保留源码,只是将git commit和index 信息回退到了某个版本.
+git reset 默认是 --mixed 模式
+git reset --mixed 等价于 git reset
+
+merge　　简单来说就合并两个分支并生成一个新的提交。先当与在用两个分支的最新合并，然后再主分支端生成一个新的提交
+rebase，会更具提交的时间合成一条线
+
+
+git log 显示的东西如下：
+---
+commit f1258438d3b63e78bb747c510f9af3e56be5b3b0
+Author: *****
+Date:   Tue Mar 6 19:39:20 2018 +0800
+
+git pull来拉取代码，git pull相当于是git fetch + git merge，如果此时运行git pull -r，也就是git pull --rebase，相当于git fetch + git rebase

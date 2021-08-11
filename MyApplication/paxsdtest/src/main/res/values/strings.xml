@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">终端内存压力测试</string>
+    <string name="copy_fix_file">SD卡拷贝固定文件到终端打开</string>
+    <string name="copy_phone_Upan">终端拷贝数据到U盘</string>
+    <string name="copy_phone_SD">终端拷贝数据到SD卡</string>
+    <string name="remind_SD">请插入SD...</string>
+    <string name="remind_Upan">请插入U盘...</string>
+    <string name="star_copy_SD">终端开始向SD卡拷贝文件测试...</string>
+    <string name="star_copy_Upan">终端开始向U盘拷贝文件测试...</string>
+    <string name="copy_fiel">拷贝文件中...</string>
+</resources>

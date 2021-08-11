@@ -1,0 +1,123 @@
+1、学习资料
+https://www.jb51.net/article/117616.htm
+https://blog.csdn.net/weixin_37885641/article/details/89496381?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4.control&spm=1001.2101.3001.4242
+https://blog.csdn.net/ytuglt/article/details/105909857
+https://blog.csdn.net/naiwenw/article/details/78980128
+
+一、环境搭建
+
+1、//Project的build.gradle中添加rotobuf-gradle-plugin插件
+dependencies {
+ ...
+ classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.0"
+ ...
+ }
+首先添加rotobuf-gradle-plugin插件，他是用来从proto文件自动生成java代码的
+和Android同一级目录
+2、//App的build.gradle中添加下面配置
+apply plugin: 'com.google.protobuf'
+
+3、//App的build.gradle中添加下面配置
+ dependencies {
+ ...
+ compile 'io.grpc:grpc-netty:1.1.2'
+    compile 'io.grpc:grpc-protobuf:1.1.2'
+    compile 'io.grpc:grpc-stub:1.1.2'
+    compile 'javax.annotation:javax.annotation-api:1.2'
+ ...
+}
+和Android同一级目录
+4、protobuf {
+//配置生成的java类的根目录
+    generatedFilesBaseDir = "$projectDir/src/"
+    //  自定义protoc编译器 Configure the protoc executable  配置protoc编译器以及编译器的版本
+    protoc {
+        //这个也存在工具的兼容性的问题,一般使用com.google.protobuf:protoc:3.0.0
+//        artifact = "com.google.protobuf:protoc:3.7.1"
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+
+    //指定protoc运行插件  一般有如下两种
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0'
+        }
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+    }
+   //自定义代码生成任务
+    generateProtoTasks {
+        all().each { task ->
+            // protoc编译配置，如果配置生成java、cpp、python等语言
+            task.builtins {
+                //依据proto文件生成的Java语言的类
+                java{}
+                //依据proto文件生成的python语言的模块
+//                python{}
+                //依据proto文件生成的C语言的类
+//                cpp{}
+                // If you wish to avoid generating Java files:  不想生成Java代码可以使用下面这个
+//                remove java
+            }
+            //protoc编译插件配置，如配置grpc插件等。 此处配置的插件必须在 protobuf.plugins 中预先定义
+            task.plugins {
+                //如果是下面这个，就需要指定artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//                javalite {}
+                //如果是GRPC就使用下面这个  如果是GRPC，那么前面的plugins就需要指定 artifact = 'io.grpc:protoc-gen-grpc-java:1.0.0'
+                grpc{}
+            }
+        }
+    }
+
+    //需要添加这句
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+
+}
+
+5、Android下面
+packagingOptions {
+        pickFirst 'META-INF/INDEX.LIST'
+        pickFirst 'META-INF/LICENSE'
+        pickFirst 'META-INF/io.netty.versions.properties'
+    }
+
+
+二、异常报错解决
+1、Warning:Conflict with dependency ‘com.google.code.findbugs:jsr305'. Resolved versions for app (3.0.0) and test app (2.0.1) differ. See http://g.co/androidstudio/app-test-app-conflict for details.
+可以在App的build.gradle的android标签中配置一下解决
+android {
+ ...
+ configurations.all {
+ resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.1'
+ }
+ ...
+}
+
+2、Caused by: io.grpc.ManagedChannelProvider$ProviderNotFoundException: No functional server found. Try adding a dependency on the grpc-netty artifact
+猜测google使用netty替代了okhttp，尝试换成grpc-netty的依赖:
+dependencies {
+ ...
+ compile 'io.grpc:grpc-netty:1.1.2'
+ compile 'io.grpc:grpc-protobuf-lite:1.1.2'
+ compile 'io.grpc:grpc-stub:1.1.2'
+ compile 'javax.annotation:javax.annotation-api:1.2'
+ ...
+}
+
+3、com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/INDEX.LIST
+android {
+ ...
+ packagingOptions {
+ pickFirst 'META-INF/INDEX.LIST'
+ pickFirst 'META-INF/LICENSE'
+ pickFirst 'META-INF/io.netty.versions.properties'
+ }
+ ...
+}
+
+三、需要的权限
+<uses-permission android:name="android.permission.INTERNET"/>

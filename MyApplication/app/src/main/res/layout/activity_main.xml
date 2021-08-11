@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="macc.paxsz.com.myapplication.ui.MainActivity">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UI调试"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/BT_1"
+        android:layout_alignParentStart="true"
+        android:id="@+id/uidebug" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BT_1"
+        android:text="手机内存拷贝到SD卡" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TX2"
+        android:text="监听广播"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/BT_3"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BT_wifi"
+        android:text="WIfi调试"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/BT_1"
+        android:layout_marginStart="22dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BT_3"
+        android:text="Sd卡拷贝到手机内存"
+        android:layout_marginTop="37dp"
+        android:layout_alignTop="@+id/button2"
+        android:layout_toEndOf="@+id/BT_1" />
+</RelativeLayout>

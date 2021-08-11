@@ -1,0 +1,67 @@
+1、bat:脚本学习和总结
+@：就是表示这行仅仅是这一行不显示运行的指令，只显示结果
+echo  on表示的就是所有的指令都显示运行过程
+echo off 表示和on相反
+
+2、AT命令可在指定时间和日期、在指定计算机上运行命令和程序
+
+3、schtasks创建的任务  主要就是允许管理员在本地或远程系统上创建计划任务。
+schtasks /delete /TN shutdown_test
+https://blog.csdn.net/weixin_30662539/article/details/95487151
+
+4、设置用户输入：
+set /p startip=[自定义提示语}] 后面如需要调用就 %startip%
+
+5、if 语句格式  需要注意的是要前面要有空格，如果option是string类型判断条件为"%option%" == "1"
+否定格式为if [not] "参数" == "字符串" if [not] exist [路径\]文件名 待执行的命令 if exist c:\config.sys type c:\config.sys
+                                                           表示如果存在c:\config.sys文件，则显示它的内容
+if %option% == 1 (
+  echo three
+  pax_adb systool set language 'zh-CN'
+) ^
+else if %option% == 2 (
+  echo two
+  pax_adb systool set language 'en-US'
+) ^
+else (
+  echo zero
+)
+
+6、注释
+::  不会回显, 无论是否用echo on打开命令行回显状态
+rem  会显示
+goto start
+需要注释的行   这种方式去实现注释多行的功能
+:start
+
+7、call  从一个批处理程序中调用另一个批处理程序，而不会引起第一个批处理的中止
+call c:\ucdos\ucdos.bat 调用ucdos
+
+8、输出重定向
+通过> 符号可以实现运行adb 指令后返回的值重定向输出到你指定的路径下面的文档里面   比如  pax_adb systool get sysver >G:\bat\mes.txt
+
+9、循环
+搜索当前目录下所有的文本文件   %%i为形式参数，固定格式 如果括号里面是（A，B，C）那么表示%%i的值分别是A，B，C
+@echo off
+for %%i in (*.txt) do echo "%%i"
+pause
+
+10、用dos命令命令开启一个bat脚本的的方法，进入dos界面  start G:\bat\设置系统语言.bat
+
+11、call命令实现在一个bat脚本里面调用其他的bat脚本，例如：call 1.bat  其他路径需要附上路径
+
+12、bat脚本使用外部参数规则  在bat脚本里面使用%1 接收传入的参数，比如echo %1  实际调用的时候传入参数  start G:\bat\ 2
+后面这个2就是传入的参数
+
+13、文件重定向  dir c:\*.* >a.txt 将c盘文件列表写入a.txt
+
+14、type %1 如果变量%1为一个路径的txt文件，那么就是显示这个文件的内容  如：start G:\ZJ\新建文本文档.bat G:\ZJ\新建文本文档.txt
+
+15、goto 批处理文件运行到这里将跳到goto所指定的标号(标号即label，标号用:后跟标准字符串来定义)处
+如: goto end
+:end
+echo this is the end
+
+16、CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。" 该工具允许用户从选择列表选择一个项目并返回所选项目的索引。
+choice /C dme /M "defrag,mem,end"
+if errorlevel 3 goto end   选择end 的时候errorlevel 为3  m :2  由于每个电脑不一样，根据每台电脑choice /?指令查看格式

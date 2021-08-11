@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择文件的数值：">
+        </TextView>
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <RadioButton
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            />
+
+        <RadioButton
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"/>
+        <RadioButton
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"/>
+        <RadioButton
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/btnrandom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="随机"
+            />
+    </RadioGroup>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择文件的单位：">
+        </TextView>
+    <RadioGroup
+        android:id="@+id/radioGroupdw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btnK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KB"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/btnM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            android:checked="true"/>
+
+
+        <RadioButton
+            android:id="@+id/btnG"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="G"/>
+        <RadioButton
+            android:id="@+id/btnrandom2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="随机"/>
+    </RadioGroup>
+</LinearLayout>
+
+    <!--设置一个进度条,并且设置为水平方向-->
+    <ProgressBar
+        android:layout_marginTop="15dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pgbar"
+        android:progress="0" /><![CDATA[
+        style="?android:attr/progressBarStyleHorizontal"/>
+    ]]>
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="10dp"
+        android:text="测试进度:"
+
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnsatr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="@string/copy_phone_SD" />
+
+        <Button
+            android:id="@+id/btnend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="@string/copy_phone_Upan" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnfixfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:text="@string/copy_fix_file"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/btnend"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/colorAccent"-->
+            <!--android:text="终端拷贝数据到U盘" />-->
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

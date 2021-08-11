@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择文件的单位：">
+        </TextView>
+        <RadioGroup
+            android:id="@+id/radioGroupdw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btnK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KB"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/btnM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:checked="true"/>
+
+
+            <RadioButton
+                android:id="@+id/btnG"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="G"/>
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>
